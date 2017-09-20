@@ -13,8 +13,8 @@ public class Point {
         this.y = y;
     }
 
-    public static double distance(Point p1, Point p2) {
-        return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+    public double distance(Point p2) {
+        return Math.sqrt((x - p2.x) * (x - p2.x) + (y - p2.y) * (y - p2.y));
     }
 
 
@@ -23,7 +23,7 @@ public class Point {
         Point p1 = new Point(5, 10);
         Point p2 = new Point(10, 10);
 
-        System.out.println("Расстояние между точкой p1 и p2 = " + distance(p1, p2));
+        System.out.println("Расстояние между точкой p1 и p2 = " + p1.distance(p2));
     }
 
 }
