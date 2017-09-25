@@ -30,7 +30,7 @@ public class ApplicationManager {
         login("admin", "secret");
     }
 
-    private void login(String name, String password) {
+    public void login(String name, String password) {
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys(name);
