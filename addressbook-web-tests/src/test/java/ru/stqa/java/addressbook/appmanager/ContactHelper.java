@@ -3,7 +3,6 @@ package ru.stqa.java.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.java.addressbook.model.ContactData;
-import ru.stqa.java.addressbook.model.GroupData;
 
 /**
  * Created by eSeemann on 25.09.2017.
@@ -41,7 +40,7 @@ public class ContactHelper {
         wd.findElement(By.xpath("//div[@id='content']/form[1]/input[22]")).click();
     }
 
-          public void submitContactCreation() {
+    public void submitContactCreation() {
         wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
     }
 
