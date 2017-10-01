@@ -1,6 +1,5 @@
 package ru.stqa.java.addressbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -11,8 +10,9 @@ import java.util.concurrent.TimeUnit;
  * Created by eSeemann on 23.09.2017.
  */
 public class ApplicationManager {
-    FirefoxDriver wd;
+ FirefoxDriver wd;
 
+    private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private ContactHelper contactHelper;
     private GroupHelper groupHelper;
@@ -33,17 +33,8 @@ public class ApplicationManager {
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
         navigationHelper = new NavigationHelper(wd);
-        login("admin", "secret");
-    }
-
-    private void login(String name, String password) {
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(name);
-        wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+        sessionHelper = new SessionHelper(wd);
+        sessionHelper.login("admin", "secret");
     }
 
     public void stop() {
@@ -60,5 +51,9 @@ public class ApplicationManager {
 
     public NavigationHelper getNavigationHelper() {
         return navigationHelper;
+    }
+
+    public SessionHelper getSessionHelper() {
+        return sessionHelper;
     }
 }
