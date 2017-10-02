@@ -1,7 +1,10 @@
 package ru.stqa.java.addressbook.appmanager;
 
+import junit.framework.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.java.addressbook.model.ContactData;
 
 /**
@@ -43,10 +46,17 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getVorname());
         type(By.name("lastname"), contactData.getNachname());
         type(By.name("mobile"), contactData.getHandy());
         type(By.name("email"), contactData.getMailto());
+        if (creation) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new.group")));
+        }
+
     }
+
 }
